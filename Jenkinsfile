@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        dotnet
+    }
     stages {
         stage('Restore Packages') {
             steps {
