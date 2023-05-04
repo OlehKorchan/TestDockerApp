@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        dotnet
+        dotnet '6.0'
     }
     stages {
         stage('Restore Packages') {
