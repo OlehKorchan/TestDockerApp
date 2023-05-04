@@ -1,22 +1,17 @@
 pipeline {
     agent any
     tools {
-        dotnetsdk '6.0'
+       msbuild 'msbuild-16.0' // assumes the MSBuild tool has been added as a tool in Jenkins
     }
     stages {
         stage('Restore Packages') {
             steps {
-                sh 'dotnet restore'
+                sh 'nuget restore'
             }
         }
         stage('Build') {
             steps {
-                sh 'dotnet build -c Release'
-            }
-        }
-        stage('Publish') {
-            steps {
-                sh 'dotnet publish -c Release -o ./publish'
+                sh 'msbuild /t:Build /p:Configuration=Release'
             }
         }
     }
